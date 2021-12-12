@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("before async ")
+        // in order to call async from sync
         Task {
             await asynCaller()
         }
@@ -40,6 +41,7 @@ class ViewController: UIViewController {
         let requestURL = URL(string: url)!
         let request = URLRequest(url: requestURL)
         do {
+            // swift introduced new HTTP-API for async-await
             let response = try await URLSession.shared.data(for: request)
             return response
         } catch {
